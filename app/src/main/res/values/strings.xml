@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">android-authenticator</string>
+    <string name="app_name">Android Authenticator</string>
     <!-- Strings related to login -->
     <string name="prompt_client">Client</string>
     <string name="prompt_secret">Secret</string>
