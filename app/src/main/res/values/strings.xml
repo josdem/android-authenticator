@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">Android Authenticator</string>
-    <!-- Strings related to login -->
     <string name="prompt_client">Client</string>
     <string name="prompt_secret">Secret</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_send">Send</string>
+    <string name="action_sign_in_short">Send</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
