@@ -99,12 +99,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome)
-        val displayName = model.displayName
+        val token = getString(R.string.token)
+        val accessToken = model.displayName
         // TODO : initiate successful logged in experience
         Toast.makeText(
             applicationContext,
-            "$welcome $displayName",
+            "$token: $accessToken",
             Toast.LENGTH_LONG
         ).show()
     }

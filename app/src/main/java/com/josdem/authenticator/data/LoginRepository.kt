@@ -1,6 +1,7 @@
 package com.josdem.authenticator.data
 
-import com.josdem.authenticator.data.model.LoggedInUser
+import android.util.Log
+import com.josdem.authenticator.data.model.AccessTokenResponse
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -10,7 +11,7 @@ import com.josdem.authenticator.data.model.LoggedInUser
 class LoginRepository(val dataSource: LoginDataSource) {
 
     // in-memory cache of the loggedInUser object
-    var user: LoggedInUser? = null
+    var user: AccessTokenResponse? = null
         private set
 
     val isLoggedIn: Boolean
@@ -27,9 +28,11 @@ class LoginRepository(val dataSource: LoginDataSource) {
         dataSource.logout()
     }
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
+    fun login(username: String, password: String): Result<AccessTokenResponse> {
         // handle login
         val result = dataSource.login(username, password)
+
+        Log.d("credentials: ", username + ":" + password)
 
         if (result is Result.Success) {
             setLoggedInUser(result.data)
@@ -38,9 +41,8 @@ class LoginRepository(val dataSource: LoginDataSource) {
         return result
     }
 
-    private fun setLoggedInUser(loggedInUser: LoggedInUser) {
+    private fun setLoggedInUser(loggedInUser: AccessTokenResponse) {
         this.user = loggedInUser
-        // If user credentials will be cached in local storage, it is recommended it be encrypted
-        // @see https://developer.android.com/training/articles/keystore
+        Log.d("logged user: ", loggedInUser.tokenType + ":" + loggedInUser.accessToken)
     }
 }
