@@ -7,6 +7,7 @@ import com.josdem.authenticator.service.RetrofitHelper
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import java.io.IOException
+import java.util.*
 
 class LoginDataSource {
 
@@ -17,7 +18,9 @@ class LoginDataSource {
 
         MainScope().launch {
             Log.d("calling retrofit", "===========================================================================================>")
-            val result = oauthService.getToken("client", "secret", "write", "client_credentials")
+            val authorization = Base64.getEncoder().encodeToString("client:secret".encodeToByteArray())
+            Log.d("authorization: ", authorization)
+            val result = oauthService.getToken("Basic $authorization", "write", "client_credentials")
             Log.d("response: ", result.body().toString())
         }
 
