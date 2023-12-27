@@ -17,7 +17,7 @@ class LoginDataSource {
 
         MainScope().launch {
             Log.d("calling retrofit", "===========================================================================================>")
-            val result = oauthService.getToken("client", "secret", "write")
+            val result = oauthService.getToken("client", "secret", "write", "client_credentials")
             Log.d("response: ", result.body().toString())
         }
 

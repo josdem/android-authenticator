@@ -8,12 +8,13 @@ import retrofit2.http.POST
 
 interface AuthService {
 
-    @POST("oauth2/token")
+    @POST("/oauth2/token")
     @FormUrlEncoded
     suspend fun getToken(
-        @Field("clientId") clientId: String,
-        @Field("clientSecret") clientSecret: String,
-        @Field("scope") scope: String
+        @Field("client_id") clientId: String,
+        @Field("client_secret") clientSecret: String,
+        @Field("scope") scope: String,
+        @Field("grant_type") grantType: String
     ): Response<AccessTokenResponse>
 
 }
