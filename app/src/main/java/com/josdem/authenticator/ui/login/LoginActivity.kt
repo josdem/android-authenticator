@@ -1,20 +1,22 @@
 package com.josdem.authenticator.ui.login
 
 import android.app.Activity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.josdem.authenticator.R
 import com.josdem.authenticator.databinding.ActivityLoginBinding
 
-import com.josdem.authenticator.R
 
 class LoginActivity : AppCompatActivity() {
 
@@ -23,6 +25,9 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val policy = ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -99,12 +104,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome)
-        val displayName = model.displayName
+        val token = getString(R.string.token)
+        val accessToken = model.displayName
         // TODO : initiate successful logged in experience
         Toast.makeText(
             applicationContext,
-            "$welcome $displayName",
+            "$token: $accessToken",
             Toast.LENGTH_LONG
         ).show()
     }
