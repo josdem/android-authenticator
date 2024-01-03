@@ -13,11 +13,8 @@ class LoginDataSource {
 
 
     fun login(username: String, password: String): Result<AccessTokenResponse> {
-        Log.d(
-            "calling retrofit",
-            "===========================================================================================>"
-        )
-        val authorization = Base64.getEncoder().encodeToString("client:secret".encodeToByteArray())
+        val authorization =
+            Base64.getEncoder().encodeToString("$username:$password".encodeToByteArray())
         Log.d("authorization: ", authorization)
         val call = oauthService.getToken("Basic $authorization", "write", "client_credentials")
         return try {
