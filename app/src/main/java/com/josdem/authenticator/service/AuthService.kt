@@ -1,6 +1,7 @@
 package com.josdem.authenticator.service
 
 import com.josdem.authenticator.data.model.AccessTokenResponse
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -11,10 +12,10 @@ interface AuthService {
 
     @POST("/oauth2/token")
     @FormUrlEncoded
-    suspend fun getToken(
+    fun getToken(
         @Header("Authorization") authorization: String,
         @Field("scope") scope: String,
         @Field("grant_type") grantType: String
-    ): Response<AccessTokenResponse>
+    ): Call<AccessTokenResponse>
 
 }
