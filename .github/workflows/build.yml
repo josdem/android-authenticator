@@ -2,8 +2,10 @@ name: Minimal Android CI Workflow
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
   test:
     name: Run Unit Tests
