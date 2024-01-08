@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id "org.jlleitschuh.gradle.ktlint" version "12.0.3"
+    id "com.diffplug.spotless" version "6.23.3"
 }
 
 android {
@@ -32,6 +34,32 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+}
+
+spotless {
+    // optional: limit format enforcement to just the files changed by this feature branch
+//    ratchetFrom 'feature1'
+
+    format 'misc', {
+        // define the files to apply `misc` to
+        target '**/*.gradle', '**/*.md', '**/.gitignore'
+
+        // define the steps to apply to those files
+        indentWithSpaces()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+
+    kotlin {
+        // define the files
+        target '**/*.kt'
+
+        // define the steps to apply to those files
+        ktlint()
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
     }
 }
 

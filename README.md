@@ -14,6 +14,12 @@ This project is a basic [Android](https://www.android.com/) application using [K
 gradle assembleDebug
 ```
 
+### To format the code
+
+```bash
+gradle spotlessApply
+```
+
 ### To run emulator
 
 ```bash
@@ -21,6 +27,7 @@ ${androidSdk}/emulator emulator -adv ${deviceName}
 ```
 
 Where:
+
 - `${androidSdk}` is your Android SDK directory
 - `${deviceName}` is device you created
 
