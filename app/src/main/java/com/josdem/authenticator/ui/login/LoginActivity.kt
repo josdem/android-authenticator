@@ -66,15 +66,12 @@ class LoginActivity : AppCompatActivity() {
                 updateUiWithUser(loginResult.success)
                 supportFragmentManager
                     .beginTransaction()
-                    .add(
-                        com.google.android.material.R.id.content, MessageFragment()
+                    .replace(
+                        R.id.container, MessageFragment()
                     )
                     .commit();
             }
             setResult(Activity.RESULT_OK)
-
-            //Complete and destroy login activity once successful
-            finish()
         })
 
         username.afterTextChanged {
