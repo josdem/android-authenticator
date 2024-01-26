@@ -14,6 +14,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.josdem.authenticator.MessageFragment
 import com.josdem.authenticator.R
 import com.josdem.authenticator.databinding.ActivityLoginBinding
 
@@ -63,6 +64,12 @@ class LoginActivity : AppCompatActivity() {
             }
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
+                supportFragmentManager
+                    .beginTransaction()
+                    .add(
+                        com.google.android.material.R.id.content, MessageFragment()
+                    )
+                    .commit();
             }
             setResult(Activity.RESULT_OK)
 
