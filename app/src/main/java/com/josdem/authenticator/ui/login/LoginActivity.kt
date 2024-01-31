@@ -1,6 +1,7 @@
 package com.josdem.authenticator.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
@@ -14,7 +15,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.josdem.authenticator.MessageFragment
+import com.josdem.authenticator.MessageActivity
 import com.josdem.authenticator.R
 import com.josdem.authenticator.databinding.ActivityLoginBinding
 
@@ -64,12 +65,8 @@ class LoginActivity : AppCompatActivity() {
             }
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(
-                        R.id.container, MessageFragment()
-                    )
-                    .commit();
+                val myIntent = Intent(this@LoginActivity, MessageActivity::class.java)
+                this@LoginActivity.startActivity(myIntent)
             }
             setResult(Activity.RESULT_OK)
         })
