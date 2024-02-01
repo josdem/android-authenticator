@@ -8,11 +8,12 @@ import java.io.IOException
 import java.util.Base64
 
 class LoginDataSource {
-
     val oauthService = RetrofitHelper.getInstance().create(AuthService::class.java)
 
-
-    fun login(username: String, password: String): Result<AccessTokenResponse> {
+    fun login(
+        username: String,
+        password: String,
+    ): Result<AccessTokenResponse> {
         val authorization =
             Base64.getEncoder().encodeToString("$username:$password".encodeToByteArray())
         Log.d("authorization: ", authorization)

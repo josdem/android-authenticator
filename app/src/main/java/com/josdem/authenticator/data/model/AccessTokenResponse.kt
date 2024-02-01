@@ -9,5 +9,5 @@ data class AccessTokenResponse(
     val accessToken: String,
     @SerializedName("expires_in")
     val expiresIn: Int,
-    val scope: String
+    val scope: String,
 )
