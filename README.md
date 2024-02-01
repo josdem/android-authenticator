@@ -41,4 +41,11 @@ Where:
 - `${androidSdk}` is your Android SDK directory
 - `${projectHome}` is your project directory
 
+### To run tests
+
+```bash
+gradle test
+```
+
+**Note:** Use credentials `client:secret` for testing the app
 **Note:** Android authenticator uses [spring-web-resource-server](https://github.com/josdem/spring-web-resource-server) project as a backend service.
