@@ -5,7 +5,7 @@ import com.josdem.authenticator.data.model.AccessTokenResponse
 import com.josdem.authenticator.service.AuthService
 import com.josdem.authenticator.service.RetrofitHelper
 import java.io.IOException
-import java.util.*
+import java.util.Base64
 
 class LoginDataSource {
 
