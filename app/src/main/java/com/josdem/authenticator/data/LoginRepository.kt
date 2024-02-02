@@ -9,7 +9,6 @@ import com.josdem.authenticator.data.model.AccessTokenResponse
  */
 
 class LoginRepository(val dataSource: LoginDataSource) {
-
     // in-memory cache of the loggedInUser object
     var user: AccessTokenResponse? = null
         private set
@@ -28,7 +27,10 @@ class LoginRepository(val dataSource: LoginDataSource) {
         dataSource.logout()
     }
 
-    fun login(username: String, password: String): Result<AccessTokenResponse> {
+    fun login(
+        username: String,
+        password: String,
+    ): Result<AccessTokenResponse> {
         // handle login
         val result = dataSource.login(username, password)
 

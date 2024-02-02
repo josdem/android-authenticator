@@ -14,7 +14,6 @@ import org.junit.Before
 import org.junit.Test
 
 class LoginRepositoryTest {
-
     private val username = "josdem"
     private val password = "password"
 

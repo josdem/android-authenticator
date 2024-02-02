@@ -5,14 +5,15 @@ import com.josdem.authenticator.data.model.AccessTokenResponse
 import com.josdem.authenticator.service.AuthService
 import com.josdem.authenticator.service.RetrofitHelper
 import java.io.IOException
-import java.util.*
+import java.util.Base64
 
 class LoginDataSource {
-
     val oauthService = RetrofitHelper.getInstance().create(AuthService::class.java)
 
-
-    fun login(username: String, password: String): Result<AccessTokenResponse> {
+    fun login(
+        username: String,
+        password: String,
+    ): Result<AccessTokenResponse> {
         val authorization =
             Base64.getEncoder().encodeToString("$username:$password".encodeToByteArray())
         Log.d("authorization: ", authorization)
