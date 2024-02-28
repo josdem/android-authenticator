@@ -28,8 +28,12 @@ class MessageActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         val button = findViewById<Button>(R.id.button_chat_send)
+        val chatContent = findViewById<TextView>(R.id.text_chat_indicator)
         val message = findViewById<TextView>(R.id.edit_chat_message)
-        button.setOnClickListener { Log.d("message:", message.text.toString()) }
+        button.setOnClickListener {
+            Log.d("message:", message.text.toString())
+            chatContent.text = message.text
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
