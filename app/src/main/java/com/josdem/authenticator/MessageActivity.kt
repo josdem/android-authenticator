@@ -1,6 +1,9 @@
 package com.josdem.authenticator
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -23,6 +26,10 @@ class MessageActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_message)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        val button = findViewById<Button>(R.id.button_chat_send)
+        val message = findViewById<TextView>(R.id.edit_chat_message)
+        button.setOnClickListener { Log.d("message:", message.text.toString()) }
     }
 
     override fun onSupportNavigateUp(): Boolean {
