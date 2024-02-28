@@ -27,7 +27,7 @@ class LoginRepositoryTest {
     fun setUp() = MockKAnnotations.init(this)
 
     @Test
-    fun addition_isCorrect() {
+    fun shouldLoginUser() {
         mockkStatic(Log::class)
         every { Log.d(any(), any()) } returns 0
         every { dataSource.login(username, password) } returns result
