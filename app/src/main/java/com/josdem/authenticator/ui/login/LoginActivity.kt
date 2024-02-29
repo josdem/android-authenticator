@@ -113,7 +113,7 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUiWithUser(model: LoggedInUserView) {
         val token = getString(R.string.token)
         val accessToken = model.displayName
-        ApplicationState.storeValue("token", accessToken)
+        ApplicationState.storeValue(token, accessToken)
         Toast.makeText(
             applicationContext,
             "$token: $accessToken",
