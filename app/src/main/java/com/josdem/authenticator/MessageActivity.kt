@@ -9,11 +9,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.josdem.authenticator.data.MessageDataSource
 import com.josdem.authenticator.databinding.ActivityMessageBinding
 
 class MessageActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMessageBinding
+    private var messageDataSource = MessageDataSource()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +34,7 @@ class MessageActivity : AppCompatActivity() {
         val message = findViewById<TextView>(R.id.edit_chat_message)
         button.setOnClickListener {
             Log.d("message:", message.text.toString())
+            messageDataSource.sendMessage(message.text.toString())
             chatContent.text = message.text
         }
     }
