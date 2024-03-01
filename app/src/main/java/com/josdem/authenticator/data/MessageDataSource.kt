@@ -7,7 +7,7 @@ import com.josdem.authenticator.state.ApplicationState
 import java.io.IOException
 
 class MessageDataSource {
-    val messageService = RetrofitHelper.getInstance().create(MessageService::class.java)
+    private val messageService = RetrofitHelper.getInstance().create(MessageService::class.java)
 
     fun sendMessage(message: String): String {
         val call =

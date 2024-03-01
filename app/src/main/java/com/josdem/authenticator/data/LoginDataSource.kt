@@ -8,7 +8,7 @@ import java.io.IOException
 import java.util.Base64
 
 class LoginDataSource {
-    val oauthService = RetrofitHelper.getInstance().create(AuthService::class.java)
+    private val oauthService = RetrofitHelper.getInstance().create(AuthService::class.java)
 
     fun login(
         username: String,
