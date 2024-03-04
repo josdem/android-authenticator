@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.josdem.authenticator.MessageActivity
 import com.josdem.authenticator.R
 import com.josdem.authenticator.databinding.ActivityLoginBinding
+import com.josdem.authenticator.state.ApplicationState
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
@@ -112,7 +113,7 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUiWithUser(model: LoggedInUserView) {
         val token = getString(R.string.token)
         val accessToken = model.displayName
-        // TODO : initiate successful logged in experience
+        ApplicationState.storeValue(token, accessToken)
         Toast.makeText(
             applicationContext,
             "$token: $accessToken",
