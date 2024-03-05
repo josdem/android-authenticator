@@ -9,12 +9,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.work.PeriodicWorkRequest
-import androidx.work.WorkManager
 import com.josdem.authenticator.data.MessageDataSource
 import com.josdem.authenticator.databinding.ActivityMessageBinding
-import com.josdem.authenticator.worker.MessageWorker
-import java.util.concurrent.TimeUnit
 
 class MessageActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -29,8 +25,6 @@ class MessageActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        startPullingMessages()
-
         val navController = findNavController(R.id.nav_host_fragment_content_message)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -43,11 +37,6 @@ class MessageActivity : AppCompatActivity() {
             messageDataSource.sendMessage(message.text.toString())
             chatContent.text = message.text
         }
-    }
-
-    private fun startPullingMessages() {
-        val periodicWorkRequest = PeriodicWorkRequest.Builder(MessageWorker::class.java, 15, TimeUnit.MINUTES).build()
-        WorkManager.getInstance().enqueue(periodicWorkRequest)
     }
 
     override fun onSupportNavigateUp(): Boolean {
