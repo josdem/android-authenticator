@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -29,9 +30,16 @@ class MessageActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        val toolBar = findViewById<Toolbar>(R.id.toolbar)
         val button = findViewById<Button>(R.id.button_chat_send)
         val chatContent = findViewById<TextView>(R.id.text_chat_indicator)
         val message = findViewById<TextView>(R.id.edit_chat_message)
+
+        toolBar.setOnClickListener {
+            Log.d("toolbar:", "Pulling message")
+            chatContent.text = messageDataSource.getMessage()
+        }
+
         button.setOnClickListener {
             Log.d("message:", message.text.toString())
             messageDataSource.sendMessage(message.text.toString())
