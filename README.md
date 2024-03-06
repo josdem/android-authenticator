@@ -47,5 +47,7 @@ Where:
 gradle test
 ```
 
-**Note:** Use credentials `client:secret` for testing the app
-**Note:** Android authenticator uses [spring-web-resource-server](https://github.com/josdem/spring-web-resource-server) project as a backend service.
+**Notes:**
+1. Use credentials `client:secret` for testing the app
+2. Pull new messages tapping in the toolbar
+3. Android authenticator uses [spring-web-resource-server](https://github.com/josdem/spring-web-resource-server) project as a backend service.
