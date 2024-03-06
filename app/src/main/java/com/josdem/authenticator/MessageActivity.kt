@@ -35,7 +35,7 @@ class MessageActivity : AppCompatActivity() {
         button.setOnClickListener {
             Log.d("message:", message.text.toString())
             messageDataSource.sendMessage(message.text.toString())
-            chatContent.text = message.text
+            chatContent.text = messageDataSource.getMessage()
         }
     }
 
