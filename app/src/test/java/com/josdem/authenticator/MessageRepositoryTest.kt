@@ -19,12 +19,22 @@ class MessageRepositoryTest {
     fun setUp() = MockKAnnotations.init(this)
 
     @Test
-    fun shouldSendMessage()  {
+    fun shouldSendMessage() {
         val message = "Hello World!"
         every { messageDataSource.sendMessage(message) } returns expectedMessage
 
         val messageRepository = MessageRepository(messageDataSource)
         val result = messageRepository.sendMessage(message)
+
+        assertEquals(expectedMessage, result)
+    }
+
+    @Test
+    fun getMessage() {
+        every { messageDataSource.getMessage() } returns expectedMessage
+
+        val messageRepository = MessageRepository(messageDataSource)
+        val result = messageRepository.getMessage()
 
         assertEquals(expectedMessage, result)
     }
