@@ -28,15 +28,18 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.josdem.authenticator.data.MessageDataSource
+import com.josdem.authenticator.data.MessageRepository
 import com.josdem.authenticator.databinding.ActivityMessageBinding
 
 class MessageActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMessageBinding
-    private var messageDataSource = MessageDataSource()
+    private lateinit var messageRepository: MessageRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        messageRepository = MessageRepository(MessageDataSource())
 
         binding = ActivityMessageBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -54,13 +57,13 @@ class MessageActivity : AppCompatActivity() {
 
         toolBar.setOnClickListener {
             Log.d("toolbar:", "Pulling message")
-            chatContent.text = messageDataSource.getMessage()
+            chatContent.text = messageRepository.getMessage()
         }
 
         button.setOnClickListener {
             Log.d("message:", message.text.toString())
-            messageDataSource.sendMessage(message.text.toString())
-            chatContent.text = messageDataSource.getMessage()
+            messageRepository.sendMessage(message.text.toString())
+            chatContent.text = messageRepository.getMessage()
         }
     }
 
