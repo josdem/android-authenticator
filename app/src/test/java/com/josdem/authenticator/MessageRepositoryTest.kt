@@ -30,7 +30,7 @@ class MessageRepositoryTest {
     }
 
     @Test
-    fun getMessage() {
+    fun shouldGetMessage() {
         every { messageDataSource.getMessage() } returns expectedMessage
 
         val messageRepository = MessageRepository(messageDataSource)
