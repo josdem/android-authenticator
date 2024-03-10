@@ -19,6 +19,7 @@ package com.josdem.authenticator.data
 
 import android.util.Log
 import com.josdem.authenticator.data.model.AccessTokenResponse
+
 class LoginRepository(val dataSource: LoginDataSource) {
     var user: AccessTokenResponse? = null
         private set

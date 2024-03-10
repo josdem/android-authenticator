@@ -10,23 +10,22 @@ import org.junit.Before
 import org.junit.Test
 
 class MessageRepositoryTest {
+    private val expectedMessage: String = "Yay!"
 
     @MockK
-    private lateinit var messageDataSource:MessageDataSource
-
-    private val EXPECTED_MESSAGE: String = "Yay!"
+    private lateinit var messageDataSource: MessageDataSource
 
     @Before
     fun setUp() = MockKAnnotations.init(this)
 
     @Test
-    fun shouldSendMessage(){
+    fun shouldSendMessage()  {
         val message = "Hello World!"
-        every { messageDataSource.sendMessage(message) } returns EXPECTED_MESSAGE
+        every { messageDataSource.sendMessage(message) } returns expectedMessage
 
         val messageRepository = MessageRepository(messageDataSource)
         val result = messageRepository.sendMessage(message)
 
-        assertEquals(EXPECTED_MESSAGE, result);
+        assertEquals(expectedMessage, result)
     }
 }
