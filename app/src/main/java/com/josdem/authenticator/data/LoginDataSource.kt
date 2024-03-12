@@ -37,7 +37,7 @@ class LoginDataSource {
         val call = oauthService.getToken("Basic $authorization", "write", "client_credentials")
         return try {
             val response = call.execute()
-            if(response.isSuccessful) {
+            if (response.isSuccessful) {
                 return Result.Success(response.body().toString() as AccessTokenResponse)
             } else {
                 Result.Error(IOException("Error logging in"))
