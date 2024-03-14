@@ -17,25 +17,27 @@ under the License.
 
 package com.josdem.authenticator
 
-import androidx.lifecycle.LiveData
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.josdem.authenticator.data.LoginRepository
-import com.josdem.authenticator.data.model.AccessTokenResponse
 import com.josdem.authenticator.data.Result
+import com.josdem.authenticator.data.model.AccessTokenResponse
 import com.josdem.authenticator.ui.login.LoggedInUserView
 import com.josdem.authenticator.ui.login.LoginResult
 import com.josdem.authenticator.ui.login.LoginViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
-import io.mockk.verify
 import junit.framework.TestCase.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 class LoginViewModelTest {
-
     private val username = "josdem"
     private val password = "12345678"
+
+    @get:Rule
+    val rule = InstantTaskExecutorRule()
 
     @MockK
     private lateinit var loginRepository: LoginRepository
@@ -47,7 +49,7 @@ class LoginViewModelTest {
     fun setup() = MockKAnnotations.init(this)
 
     @Test
-    fun shouldLogin(){
+    fun `user should be able to login`() {
         val expectedResult = LoginResult(success = LoggedInUserView(displayName = result.data.accessToken))
         every { loginRepository.login(username, password) } returns result
         val loginViewModel = LoginViewModel(loginRepository)
