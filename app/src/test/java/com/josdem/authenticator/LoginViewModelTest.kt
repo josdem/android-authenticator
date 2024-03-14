@@ -49,7 +49,7 @@ class LoginViewModelTest {
     fun setup() = MockKAnnotations.init(this)
 
     @Test
-    fun `user should be able to login`() {
+    fun `should update live data with a success value`() {
         val expectedResult = LoginResult(success = LoggedInUserView(displayName = result.data.accessToken))
         every { loginRepository.login(username, password) } returns result
         val loginViewModel = LoginViewModel(loginRepository)
