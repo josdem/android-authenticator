@@ -21,6 +21,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.josdem.authenticator.data.LoginRepository
 import com.josdem.authenticator.data.Result
 import com.josdem.authenticator.data.model.AccessTokenResponse
+import com.josdem.authenticator.exception.BusinessException
 import com.josdem.authenticator.ui.login.LoggedInUserView
 import com.josdem.authenticator.ui.login.LoginResult
 import com.josdem.authenticator.ui.login.LoginViewModel
@@ -43,15 +44,25 @@ class LoginViewModelTest {
     private lateinit var loginRepository: LoginRepository
 
     private val accessTokenResponse = AccessTokenResponse("token", "access", 100, "scope")
-    private val result = Result.Success(accessTokenResponse)
+    private val successResult = Result.Success(accessTokenResponse)
+    private val errorResult = Result.Error(BusinessException("Wrong Credentials"))
 
     @Before
     fun setup() = MockKAnnotations.init(this)
 
     @Test
     fun `should update live data with a success value`() {
-        val expectedResult = LoginResult(success = LoggedInUserView(displayName = result.data.accessToken))
-        every { loginRepository.login(username, password) } returns result
+        val expectedResult = LoginResult(success = LoggedInUserView(displayName = successResult.data.accessToken))
+        every { loginRepository.login(username, password) } returns successResult
+        val loginViewModel = LoginViewModel(loginRepository)
+        loginViewModel.login(username, password)
+        assertEquals(expectedResult, loginViewModel.loginResult.value)
+    }
+
+    @Test
+    fun `should update live data with a error value`() {
+        val expectedResult = LoginResult(success = null, error = 2131755072)
+        every { loginRepository.login(username, password) } returns errorResult
         val loginViewModel = LoginViewModel(loginRepository)
         loginViewModel.login(username, password)
         assertEquals(expectedResult, loginViewModel.loginResult.value)
