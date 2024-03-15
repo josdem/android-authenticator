@@ -19,6 +19,7 @@ package com.josdem.authenticator.data
 
 import android.util.Log
 import com.josdem.authenticator.data.model.AccessTokenResponse
+import com.josdem.authenticator.exception.BusinessException
 import com.josdem.authenticator.service.AuthService
 import com.josdem.authenticator.service.RetrofitHelper
 import java.io.IOException
@@ -36,9 +37,12 @@ class LoginDataSource {
         Log.d("authorization: ", authorization)
         val call = oauthService.getToken("Basic $authorization", "write", "client_credentials")
         return try {
-            val result = call.execute()
-            Log.d("response: ", result.body().toString())
-            Result.Success(result.body() as AccessTokenResponse)
+            val response = call.execute()
+            if (response.isSuccessful) {
+                return Result.Success(response.body().toString() as AccessTokenResponse)
+            } else {
+                Result.Error(BusinessException("Error logging in"))
+            }
         } catch (ioe: IOException) {
             Result.Error(IOException("Error logging in", ioe))
         }
