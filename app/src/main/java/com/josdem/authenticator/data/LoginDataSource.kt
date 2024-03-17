@@ -39,7 +39,8 @@ class LoginDataSource {
         return try {
             val response = call.execute()
             if (response.isSuccessful) {
-                return Result.Success(response.body().toString() as AccessTokenResponse)
+                Log.d("response: ", response.body().toString())
+                return Result.Success(response.body() as AccessTokenResponse)
             } else {
                 Result.Error(BusinessException("Error logging in"))
             }
